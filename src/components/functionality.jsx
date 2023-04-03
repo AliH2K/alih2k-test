@@ -15,15 +15,20 @@ function InpField() {
   function botWordGen() {
     let wordArray = Array.from(randWord);
     let filteredWords = [];
+    const bg = wordsCon.botGuesses;
     if (wordsCon.difficulty === 'Easy') {
-      if (wordsCon.botGuesses.length > 0) {
+      if (bg.length > 0) {
         for (let w = 0; w < words.length; w++) {
           if (
             words[w].includes(
-              wordsCon.botGuesses[0].correctLetters.contains[0]
+              bg[bg.length - 1].correctLetters.contains[
+                bg[bg.length - 1].correctLetters.contains.length - 1
+              ]
             ) ||
             words[w].includes(
-              wordsCon.botGuesses[0].correctLetters.correctPos[0]
+              bg[bg.length - 1].correctLetters.correctPos[
+                bg[bg.length - 1].correctLetters.contains.length - 1
+              ]
             ) ||
             words[w].includes(wordArray[2])
           ) {
@@ -41,15 +46,8 @@ function InpField() {
     if (wordsCon.difficulty === 'Normal') {
       for (let w = 0; w < words.length; w++) {
         if (
-          words[w].includes(
-            wordsCon.botGuesses[wordsCon.botGuesses.length - 1].correctLetters
-              .contains[0]
-          ) ||
-          (words[w].includes(
-            wordsCon.botGuesses[wordsCon.botGuesses.length - 1].correctLetters
-              .correctPos[0]
-          ) &&
-            words[w].includes(wordArray[1]))
+          words[w].includes(wordArray[0]) &&
+          words[w].includes(wordArray[3])
         ) {
           filteredWords.push(words[w]);
         }
