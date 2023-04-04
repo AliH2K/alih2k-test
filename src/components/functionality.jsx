@@ -14,23 +14,18 @@ function InpField() {
 
   function botWordGen() {
     let wordArray = Array.from(randWord);
+    let usedWords = [];
+    wordsCon.botGuesses.map((x) => {
+      usedWords.push(x.guessedWord);
+    });
     let filteredWords = [];
     const bg = wordsCon.botGuesses;
     if (wordsCon.difficulty === 'Easy') {
       if (bg.length > 0) {
         for (let w = 0; w < words.length; w++) {
           if (
-            words[w].includes(
-              bg[bg.length - 1].correctLetters.contains[
-                bg[bg.length - 1].correctLetters.contains.length - 1
-              ]
-            ) ||
-            words[w].includes(
-              bg[bg.length - 1].correctLetters.correctPos[
-                bg[bg.length - 1].correctLetters.contains.length - 1
-              ]
-            ) ||
-            words[w].includes(wordArray[2])
+            words[w].includes(wordArray[1]) &&
+            !usedWords.includes(words[w])
           ) {
             filteredWords.push(words[w]);
           }
@@ -47,8 +42,8 @@ function InpField() {
       for (let w = 0; w < words.length; w++) {
         if (
           words[w].includes(wordArray[0]) &&
-          words[w].includes(wordArray[1]) &&
-          words[w].includes(wordArray[4])
+          words[w].includes(wordArray[4]) &&
+          !usedWords.includes(words[w])
         ) {
           filteredWords.push(words[w]);
         }
@@ -61,13 +56,15 @@ function InpField() {
         if (
           words[w].includes(wordArray[1]) &&
           words[w].includes(wordArray[2]) &&
-          words[w].includes(wordArray[3])
+          words[w].includes(wordArray[3]) &&
+          !usedWords.includes(words[w])
         ) {
           filteredWords.push(words[w]);
         }
       }
       botInit(filteredWords[Math.floor(Math.random() * filteredWords.length)]);
     }
+    console.log(usedWords);
   }
 
   function botInit(word) {
