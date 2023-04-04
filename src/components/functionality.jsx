@@ -47,7 +47,8 @@ function InpField() {
       for (let w = 0; w < words.length; w++) {
         if (
           words[w].includes(wordArray[0]) &&
-          words[w].includes(wordArray[3])
+          words[w].includes(wordArray[1]) &&
+          words[w].includes(wordArray[4])
         ) {
           filteredWords.push(words[w]);
         }
